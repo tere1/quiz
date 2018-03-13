@@ -1,0 +1,7 @@
+<h1>Editar Pregunta</h1>
+<%= render 'form' %><br/>
+<%= link_to 'Consultar', @question, :class => 'submit' %>
+<%= link_to 'Regresar', questions_path, :class => 'submit' %>
+<% content_for(:title) do %>
+Actualizar Pregunta
+<% end %>

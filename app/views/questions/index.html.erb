@@ -1,0 +1,43 @@
+<head>
+
+<center>
+<FONT FACE="impact" SIZE=2 COLOR="brown"><h1>TEST PARA MAMÁS.</h1><FONT>
+</center>
+<h3>¿Cuánto sabes sobre cuidados del bebe?</h3>
+
+<p>Total: <%= @questions.size %></p> 
+<p><%= link_to'Agregar Pregunta', new_question_path, :class => 'submit' %></p>
+
+<table class="table">
+
+  <tr>
+    <th>PREGUNTAS</th>
+    <th>SELECCIONA LA RESPUESTA</th>
+    <th colspan="3">OPCIONES</th>
+  </tr>
+  <% @questions.each do |question| %>
+  <tr>
+    <td><%= question.text %></td>
+    <td>
+      <ul>
+        <% question.choices.each do |choice| %>
+        <li>
+          <%= choice.text %>
+          <% if choice.correct == 1 %> (correct) <% end %>
+        </li>
+        <% end %>
+      </ul>
+    </td>
+    <td><%= link_to 'Consultar', question, :class => 'submit' %></td>
+    <td><%= link_to 'Editar', edit_question_path(question), :class => 'submit' %></td>
+    <td><%= link_to 'Eliminar', question, :confirm => '¿Seguro que desea eliminar?', :method => :delete, :class => 'submit' %></td>
+  </tr>
+      <% end %>
+
+      
+</table>
+<% content_for(:title) do %>
+All questions
+<% end %>
+<%= link_to 'Realizar quiz', quiz_index_url, :class => 'submit' %>
+

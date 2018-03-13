@@ -1,0 +1,19 @@
+<FONT FACE="impact" SIZE=1 COLOR="black"><h1>Pregunta <%= @current + 1 %> de <%= @total %></h1><FONT>
+</center>
+<p id="question"><%= @question.text %></p>
+
+<%= form_tag({:controller => 'quiz', :action => 'answer'}) do %>
+<% @choices.each do |choice| %>
+    <p class="choise">
+      <%= radio_button_tag(:choice, choice.id) %>
+      <%= label_tag('choice_'.concat(choice.id.to_s).to_sym, choice.text) %>
+    </p>
+    <% end %>
+<div class="center">
+  <%= submit_tag('Continuar', :class => 'submit') %>
+</div>
+<% end %>
+
+<% content_for(:title) do %>
+Question <%= @current + 1 %> of <%= @total %>
+<% end %>

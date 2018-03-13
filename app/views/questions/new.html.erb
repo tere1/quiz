@@ -1,0 +1,10 @@
+<center>
+<FONT FACE="impact" SIZE=2 COLOR="orange"><h1>Nueva Pregunta</h1><FONT>
+</center>
+<%= render 'form' %><br/>
+
+<%= link_to 'Regresar', questions_path, :class => 'submit'%>
+<% content_for(:title) do %>
+New Question
+<% end %>
+

@@ -1,0 +1,35 @@
+<FONT FACE="impact" SIZE=2 COLOR="black"><h1>Pregunta <%= @current + 1 %> de <%= @total %></h1><FONT>
+</center>
+<p id="question">
+  <%= @question[:text] %>
+</p>
+<div id="feedback-choices">
+  <% @choices.each do |choice| %>
+
+      <%if(choice[:correct])%>
+      <p class="correct feedback-choice">
+        <%elsif choice == @choice%>
+      <p class="incorrect feedback-choice">
+          <% else %>
+      <p class="feedback-choice">
+          <% end %>
+      <%= choice[:text] %>
+      </p>
+      <% end %>
+  </div>
+<p class="feedback">
+  <% if @correct%>
+  correct!
+      <% else %>
+  Incorrect!
+      <% end %>
+</p>
+
+<%= form_tag({:controller => 'quiz', :action => 'question'}) do %>
+    <div class="center">
+      <%= submit_tag('Continuar', :class => 'submit') %>
+      </div>
+    <% end %>
+<% content_for(:title) do%>
+    Question <%= @current + 1 %> de <%= @total %>
+    <%end%>

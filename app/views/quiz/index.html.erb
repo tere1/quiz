@@ -1,0 +1,15 @@
+<FONT FACE="impact" SIZE=2 COLOR="blue"><h1>Empezar quiz</h1><FONT>
+</center>
+
+<%= form_tag({:controller => 'quiz', :action => 'start'}) do %>
+<p><%= label_tag(:number, '¿Cuantas preguntas desea responder?', :id => 'question') %></p>
+<p class="center">
+  <%= select_tag(:number, options_for_select((1..10).map{|x| [x, x]}), :id => 'count') %>
+</p>
+<div class="center">
+  <%= submit_tag 'Comenzar', :class => 'submit'%>
+</div>
+<%end%>
+<% content_for(:title) do %>
+Start Quiz
+<%end%>

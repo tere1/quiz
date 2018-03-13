@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <FONT FACE="impact" SIZE=4 COLOR="red"><strong>Pregunta:</strong>
+  <%= @question.text %><FONT>
+</center>
+</p>
+<h4>Opciones</h4>
+<ul>
+  <% @question.choices.find_each do |choice| %>
+      <li>
+        <%= choice.text %>
+        <% if choice.correct == 1 %> (Correct) <% end %>
+  <%= form_tag({:controller => 'choices', :action => 'destroy', :class => 'table'}) do %>
+      <%= hidden_field_tag :question, @question.id %>
+      <%= hidden_field_tag :choice, choice.id %>
+      <%= submit_tag 'Eliminar', :class => 'submit' %>
+  <% end %>
+  </li>
+  <% end %>
+</ul>
+<h5>Nueva respuesta</h5>
+<%= form_tag({:controller => 'choices', :action => 'create'}) do %>
+    <%= hidden_field_tag :question, @question.id %>
+    <%= label_tag :text, 'Valor' %><br />
+    <%= text_field_tag :text %><br />
+    <%= check_box_tag :correct %><br />
+    <br />
+      <%= submit_tag('Guardar', :class => 'submit') %>
+<% end %>
+    <br />	  
+<%= link_to 'Editar', edit_question_path(@question), :class => 'submit' %>
+<%= link_to 'Regresar', questions_path, :class => 'submit' %>
+<% content_for(:title) do %>
+    Questions Details
+<%end%>
